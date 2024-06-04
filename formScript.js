@@ -3,22 +3,23 @@ console.log("formScript.js loaded");
 document.getElementById('tutoringForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const formData = new FormData();
-    formData.append('name', document.getElementById('name').value);
-    formData.append('email', document.getElementById('email').value);
-    formData.append('subject', document.getElementById('subject').value);
-    formData.append('details', document.getElementById('details').value);
-    formData.append('suggestedDates', document.getElementById('suggestedDates').value);
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        details: document.getElementById('details').value,
+        suggestedDates: document.getElementById('suggestedDates').value
+    };
 
-    const files = document.getElementById('file').files;
-    for (let i = 0; i < files.length; i++) {
-        formData.append('files[]', files[i]);
-    }
-
-    setTimeout(() => {
+    emailjs.send('service_a7fpyzi', 'template_3ah8k1d', formData)
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
         document.getElementById('responseMessage').innerText = 'Thank you for your request!';
         document.getElementById('tutoringForm').reset();
-    }, 500);
+    }, function(error) {
+        console.log('FAILED...', error);
+        document.getElementById('responseMessage').innerText = 'There was an error sending your request. Please try again.';
+    });
 });
 
 const fileInput = document.getElementById('file');
