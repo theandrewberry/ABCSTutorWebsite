@@ -3792,3 +3792,9 @@ input, select, textarea {
 			}
 
 		}
+
+/* Remove bullets from specific unordered lists */
+ul.no-bullets {
+    list-style-type: none;
+    padding-left: 0; /* Optional: remove left padding */
+}
