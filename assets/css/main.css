@@ -3005,11 +3005,20 @@ input, select, textarea {
 			border: solid 1px;
 		}
 
+		.spotlight .image-container {
+			display: flex;
+			flex-direction: column; /* Stack images vertically */
+		}
+
 			.spotlight .image img {
 				display: block;
 				border-radius: 100%;
 				width: 16em;
 			}
+		.spotlight .image-container .image.square img {
+			border-radius: 0%; /* Make the second image a square */
+			object-fit: cover; /* Ensure the image covers the square without distortion */
+		}
 
 		@media screen and (max-width: 980px) {
 
