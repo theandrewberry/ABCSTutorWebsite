@@ -11,6 +11,11 @@
     <script src="https://www.paypal.com/sdk/js?client-id=AbitH_E63lTOzO-BP8UogxyrKj1MBj6XScJOQgocf8JAXnqtzVTynlLWMyNBiiQI7nsVdq3HArdZ1yWh&enable-funding=venmo"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("AXlAGwjHEX5EDr2js");
+        })();
+    </script>
 </head>
 <body class="is-preload">
 
@@ -22,7 +27,7 @@
             <span class="logo"><img src="images/real-logo.png" alt="CompSci" /></span>
             <h1>Computer Science <br> Tutoring & Project Assistance</h1>
             <p style="font-size: 20px; color: aliceblue; padding-top: 25px;">Welcome to my website!<br />
-				Please read the details below for pricing and tutor/project scheduling!</p>
+                Please read the details below for pricing and tutor/project scheduling!</p>
         </header>
 
         <!-- Nav -->
@@ -107,7 +112,7 @@
                     <h2>Request Tutoring</h2>
                 </header>
                 <div class="content">
-                    <form id="tutoringForm" enctype="multipart/form-data">
+                    <form id="tutoringForm" enctype="multipart/form-data" onsubmit="sendForm(event)">
                         <div class="row gtr-uniform">
                             <div class="col-6 col-12-xsmall">
                                 <label for="name">Name:</label>
@@ -127,8 +132,8 @@
                             </div>
                             <div class="col-12">
                                 <label for="file" class="custom-file-label">Choose Files</label>
-                                <input type="file" id="file" name="file" multiple hidden />
-								<br>
+                                <input type="file" id="file" name="file" multiple />
+                                <br>
                                 <span id="file-chosen">No file chosen</span>
                             </div>
                             <div class="col-12">
@@ -157,7 +162,7 @@
                 </header>
                 <div style="margin-left: 50px;" class="content">
                     <form id="paymentForm">
-						<div id="paypal-button-container"></div>
+                        <div id="paypal-button-container"></div>
                     </form>
                 </div>
             </section>
@@ -182,11 +187,5 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="formScript.js"></script>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-    (function(){
-        emailjs.init("AXlAGwjHEX5EDr2js");
-    })();
-    </script>
 </body>
 </html>
