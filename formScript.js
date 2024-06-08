@@ -3,7 +3,7 @@ console.log("formScript.js loaded");
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = 'service_a7fpyzi';
 const EMAILJS_TEMPLATE_ID = 'template_3ah8k1d';
-const EMAILJS_USER_ID = 'your_user_id'; // Replace with your EmailJS user ID
+const EMAILJS_USER_ID = 'AXlAGwjHEX5EDr2js';
 
 // Maximum allowed size for attachments (in bytes)
 const MAX_ATTACHMENT_SIZE = 5 * 1024 * 1024; // 5 MB
