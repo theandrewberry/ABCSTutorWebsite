@@ -1,9 +1,16 @@
 console.log("formScript.js loaded");
 
-document.getElementById('tutoringForm').addEventListener('submit', function(event) {
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = 'service_a7fpyzi';
+const EMAILJS_TEMPLATE_ID = 'template_3ah8k1d';
+const EMAILJS_USER_ID = 'your_user_id'; // Replace with your EmailJS user ID
+
+// Maximum allowed size for attachments (in bytes)
+const MAX_ATTACHMENT_SIZE = 5 * 1024 * 1024; // 5 MB
+
+document.getElementById('tutoringForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    // Gather form data
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -12,35 +19,45 @@ document.getElementById('tutoringForm').addEventListener('submit', function(even
         suggestedDates: document.getElementById('suggestedDates').value,
     };
 
-    // Handle file attachments
     const files = document.getElementById('file').files;
-    const attachments = [];
+    let totalSize = 0;
+
+    for (let i = 0; i < files.length; i++) {
+        totalSize += files[i].size;
+        if (totalSize > MAX_ATTACHMENT_SIZE) {
+            document.getElementById('responseMessage').innerText = 'Total file size exceeds 5 MB limit.';
+            return;
+        }
+    }
 
     if (files.length > 0) {
+        const zip = new JSZip();
         for (let i = 0; i < files.length; i++) {
-            const file = files[i];
+            zip.file(files[i].name, files[i]);
+        }
+
+        try {
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
             const reader = new FileReader();
 
             reader.onload = function(e) {
-                attachments.push({
-                    content: e.target.result.split(',')[1], // Remove the Base64 prefix
-                    filename: file.name,
-                    type: file.type,
+                const attachments = [{
+                    content: e.target.result.split(',')[1],
+                    filename: 'attachments.zip',
+                    type: zipBlob.type,
                     disposition: 'attachment'
-                });
+                }];
 
-                // Check if all files are processed
-                if (attachments.length === files.length) {
-                    console.log("All files processed, sending email...");
-                    sendEmail(formData, attachments);
-                }
+                sendEmail(formData, attachments);
             };
 
-            reader.readAsDataURL(file); // Convert file to Base64
+            reader.readAsDataURL(zipBlob);
+        } catch (error) {
+            console.error("Failed to generate zip file:", error);
+            document.getElementById('responseMessage').innerText = 'Failed to process attachments. Please try again.';
         }
     } else {
-        console.log("No files to attach, sending email...");
-        sendEmail(formData, attachments);
+        sendEmail(formData, []);
     }
 });
 
@@ -50,9 +67,7 @@ function sendEmail(formData, attachments) {
         attachments: JSON.stringify(attachments)
     };
 
-    console.log("Sending email with the following data:", templateParams);
-
-    emailjs.send('service_a7fpyzi', 'template_3ah8k1d', templateParams)
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_USER_ID)
         .then(function(response) {
             console.log("Email successfully sent!", response.status, response.text);
             document.getElementById('responseMessage').innerText = 'Thank you for your request!';
