@@ -5,8 +5,9 @@ const EMAILJS_TEMPLATE_ID = 'template_3ah8k1d';
 const EMAILJS_PUBLIC_KEY = 'AXlAGwjHEX5EDr2js';
 
 emailjs.init(EMAILJS_PUBLIC_KEY);
+//hello
 
-document.getElementById('tutoringForm').addEventListener('submit', function(event) {
+function sendForm(event) {
     event.preventDefault();
     
     const form = document.getElementById('tutoringForm');
@@ -20,7 +21,7 @@ document.getElementById('tutoringForm').addEventListener('submit', function(even
             console.error("Failed to send email:", error);
             document.getElementById('responseMessage').innerText = 'Failed to send your request. Please try again.';
         });
-});
+}
 
 const fileInput = document.getElementById('file');
 const fileChosen = document.getElementById('file-chosen');
