@@ -5,7 +5,7 @@ const EMAILJS_TEMPLATE_ID = 'template_3ah8k1d';
 const EMAILJS_PUBLIC_KEY = 'AXlAGwjHEX5EDr2js';
 
 emailjs.init(EMAILJS_PUBLIC_KEY);
-//hello
+//hello bish
 
 function sendForm(event) {
     event.preventDefault();
