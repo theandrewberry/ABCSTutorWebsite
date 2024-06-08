@@ -38,6 +38,13 @@ document.getElementById('tutoringForm').addEventListener('submit', async functio
 
         try {
             const zipBlob = await zip.generateAsync({ type: 'blob' });
+            console.log("Zip Blob Size:", zipBlob.size);
+
+            if (zipBlob.size > MAX_ATTACHMENT_SIZE) {
+                document.getElementById('responseMessage').innerText = 'Compressed file size exceeds 5 MB limit.';
+                return;
+            }
+
             const reader = new FileReader();
 
             reader.onload = function(e) {
@@ -66,6 +73,8 @@ function sendEmail(formData, attachments) {
         ...formData,
         attachments: JSON.stringify(attachments)
     };
+
+    console.log("Sending email with the following data:", templateParams);
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_USER_ID)
         .then(function(response) {
