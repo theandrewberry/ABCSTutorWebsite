@@ -31,6 +31,7 @@ document.getElementById('tutoringForm').addEventListener('submit', function(even
 
                 // Check if all files are processed
                 if (attachments.length === files.length) {
+                    console.log("All files processed, sending email...");
                     sendEmail(formData, attachments);
                 }
             };
@@ -38,6 +39,7 @@ document.getElementById('tutoringForm').addEventListener('submit', function(even
             reader.readAsDataURL(file); // Convert file to Base64
         }
     } else {
+        console.log("No files to attach, sending email...");
         sendEmail(formData, attachments);
     }
 });
@@ -48,11 +50,15 @@ function sendEmail(formData, attachments) {
         attachments: JSON.stringify(attachments)
     };
 
+    console.log("Sending email with the following data:", templateParams);
+
     emailjs.send('service_a7fpyzi', 'template_3ah8k1d', templateParams)
         .then(function(response) {
+            console.log("Email successfully sent!", response.status, response.text);
             document.getElementById('responseMessage').innerText = 'Thank you for your request!';
             document.getElementById('tutoringForm').reset();
         }, function(error) {
+            console.error("Failed to send email:", error);
             document.getElementById('responseMessage').innerText = 'Failed to send your request. Please try again.';
         });
 }
