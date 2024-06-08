@@ -3,10 +3,13 @@ console.log("formScript.js loaded");
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = 'service_a7fpyzi';
 const EMAILJS_TEMPLATE_ID = 'template_3ah8k1d';
-const EMAILJS_USER_ID = 'AXlAGwjHEX5EDr2js';
+const EMAILJS_PUBLIC_KEY = 'AXlAGwjHEX5EDr2js';
+
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 // Maximum allowed size for attachments (in bytes)
 const MAX_ATTACHMENT_SIZE = 5 * 1024 * 1024; // 5 MB
+const MAX_VARIABLES_SIZE = 50 * 1024; // 50 KB
 
 document.getElementById('tutoringForm').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -55,6 +58,15 @@ document.getElementById('tutoringForm').addEventListener('submit', async functio
                     disposition: 'attachment'
                 }];
 
+                // Check if the total variables size exceeds the limit
+                const totalVariablesSize = JSON.stringify({ ...formData, attachments: JSON.stringify(attachments) }).length;
+                console.log("Total Variables Size:", totalVariablesSize);
+
+                if (totalVariablesSize > MAX_VARIABLES_SIZE) {
+                    document.getElementById('responseMessage').innerText = 'Total variables size exceeds 50 KB limit.';
+                    return;
+                }
+
                 sendEmail(formData, attachments);
             };
 
@@ -76,7 +88,7 @@ function sendEmail(formData, attachments) {
 
     console.log("Sending email with the following data:", templateParams);
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_USER_ID)
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
         .then(function(response) {
             console.log("Email successfully sent!", response.status, response.text);
             document.getElementById('responseMessage').innerText = 'Thank you for your request!';
