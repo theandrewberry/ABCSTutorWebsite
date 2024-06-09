@@ -3798,3 +3798,24 @@ ul.no-bullets {
     list-style-type: none;
     padding-left: 0; /* Optional: remove left padding */
 }
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.flex-container .no-bullets {
+    flex: 1;
+    margin-right: 20px; /* Adjust the spacing between the list and the images as needed */
+}
+
+.flex-container .image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container .image-container .image {
+    margin-bottom: 10px; /* Adjust the spacing between the images as needed */
+}

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <script src="https://www.paypal.com/sdk/js?client-id=AbitH_E63lTOzO-BP8UogxyrKj1MBj6XScJOQgocf8JAXnqtzVTynlLWMyNBiiQI7nsVdq3HArdZ1yWh&enable-funding=venmo"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body class="is-preload">
 
@@ -17,7 +19,6 @@
 
         <!-- Header -->
         <header id="header" class="alt">
-            <span class="logo"><img src="images/real-logo.png" alt="CompSci" /></span>
             <h1>Computer Science <br> Tutoring & Project Assistance</h1>
             <p style="font-size: 20px; color: aliceblue; padding-top: 25px;">Welcome to my website!<br />
 				Please read the details below for pricing and tutor/project scheduling!</p>
@@ -56,47 +57,29 @@
                     <span class="image"><img src="images/me.jpg" alt="" /></span>
                     <span class="image square" style="border: 0cap;"><img src="images/titleandreviews.png" alt="" /></span>
                 </div>
-                
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img style="width: 375px; height: auto; margin-bottom: 90px;" src="images/reviews.png" alt="Image 1" style="margin-right: 10px;" />
+                <img style="width: 375px; height: auto;" src="images/reviews2.png" alt="Image 2" />
             </div>
         </section>
             <!-- Get Started -->
             <section id="first" class="main special">
                 <header class="major">
                     <h2>Pricing</h2>
-                    <p><strong>My Hourly Rate:</strong> <br>
-                        My hourly rate varies depending on the project or tutoring request. <br> My lowest rate is <strong>$22 an hour</strong> but is typically <strong>$30 an hour</strong> depending on how busy I am.</p>
+                    <p><strong>Hourly Rate:</strong> <br>
+                        My rate varies depending on the project or tutoring request. <br> My lowest rate is <strong>$22 an hour</strong> but is typically <strong>$30 an hour</strong> depending on how busy I am.</p>
                         <p>Once you create the request & we go over some project details, we can then discuss the hourly rate!</p>
                         <br> 
                         <h2>Subjects</h2>
-                        <h3>Computer Science Subjects</h3>
                         <p>These are current subjects I am <strong>qualified and have experience tutoring in</strong>: If you don't see your subject on the list, don't worry! Make the request, and we will discuss how I can fit your needs.<br><br></p>                        
-                        <ul class = "no-bullets">
-                            <li>Angular</li>
-                            <li>ASP.NET</li>
-                            <li>NodeJS</li>
-                            <li>React</li>
-                            <li>C</li>
-                            <li>C#</li>
-                            <li>C++</li>
-                            <li>HTML/CSS</li>
-                            <li>JavaScript</li>
-                            <li>Python</li>
-                            <li>SQL</li>
-                            <li>Computer Engineering</li>
-                            <li>Computer Programming</li>
-                            <li>Full Stack Web Development</li>
-                            <li>Web Desgin</li>
-                            <li>Computer Gaming (Unity, Godot, Unreal Engine)</li>
-                            <li>Computer Science</li>
-                            <li>Linux/Windows Development</li>
-                            <li>Microsoft Power Apps</li>
-                            <li>Dreamweaver</li>
-                            <li>Microsoft 365</li>
-                            <li>Microsoft Excel</li>
-                            <li>Visual Basic</li>
-                            <li>Pre-Calculus</li>
-                            <li>Discrete Mathmatics</li>
-                        </ul>
+                        <div class="subjects" style="text-align: center;">
+                            <p><strong>Web Development:</strong> Angular, ASP.NET, NodeJS, React, HTML/CSS, JavaScript, Full Stack, Web Design</p>
+                            <p><strong>Programming Languages:</strong> C, C#, C++, Python, SQL, Visual Basic, Java</p>
+                            <p><strong>Game Development:</strong> Computer Gaming (Unity, Godot, Unreal Engine)</p>
+                            <p><strong>Software & Tools:</strong> Linux/Windows Development, Microsoft Power Apps, Dreamweaver, Microsoft Excel</p>
+                            <p><strong>Mathematics:</strong> Pre-Calculus, Discrete Mathematics</p>
+                        </div>
             </section>
 
             <!-- Tutor Request Form -->
@@ -105,45 +88,43 @@
                     <h2>Request Tutoring</h2>
                 </header>
                 <div class="content">
-                    <form action="https://formspree.io/f/xyyrrgen" method="post" enctype="multipart/form-data">
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" required />
-                        </div>
-                        <div class="col-6 col-12-xsmall">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required />
-                        </div>
-                        <div class="col-12">
-                            <label for="subject">Subject:</label>
-                            <input type="text" id="subject" name="subject" required />
-                        </div>
-                        <div class="col-12">
-                            <label for="details">Details:</label>
-                            <textarea id="details" name="details" required></textarea>
-                        </div>
-                        <div class="col-12">
-                            <label for="file" class="custom-file-label">Choose Files</label>
-                            <input type="file" id="file" name="file" multiple />
-                            <br>
-                            <span id="file-chosen">No file chosen</span>
-                        </div>
-                        <div class="col-12">
-                            <label for="suggestedDates">Project Due Date / First Meeting Date (optional):</label>
-                            <div class="input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy" data-today-highlight="true">
-                                <input type="text" class="form-control" id="suggestedDates" name="suggestedDates" placeholder="Select dates">
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
+                    <form id="tutoringForm" enctype="multipart/form-data">
+                        <div class="row gtr-uniform">
+                            <div class="col-6 col-12-xsmall">
+                                <label for="name" style="font-size: large;">Name:</label>
+                                <input type="text" id="name" name="name" required />
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                <label for="email" style="font-size: large;">Email:</label>
+                                <input type="email" id="email" name="email" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="subject" style="font-size: large;">Subject:</label>
+                                <input type="text" id="subject" name="subject" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="details" style="font-size: large;">Details:</label>
+                                <textarea id="details" name="details" style=" padding-bottom: 20px; margin-bottom: 40px;" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <input type="file" id="file" name="file" multiple hidden />
+                                <div class="col-12"> <label for="file upload" style="font-size: large;">If you have files associated with your project please send them to: <a href="mailto:andrewberrytutoring@gmail.com">andrewberrytutoring@gmail.com</a> </label> </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="suggestedDates" style="font-size: large;">Project Due Date / First Meeting Date (optional):</label>
+                                <div class="input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy" data-today-highlight="true">
+                                    <input type="text" class="form-control" id="suggestedDates" name="suggestedDates" placeholder="Select dates">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <input type="submit" value="Submit Request" class="primary" />
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="submit" value="Submit Request" class="primary" />
-                        </div>
-                    </div>
-                </form>
-                <div id="responseMessage"></div>
+                    </form>
+                    <div id="responseMessage"></div>
                 </div>
             </section>
 
