@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <script src="https://www.paypal.com/sdk/js?client-id=AbitH_E63lTOzO-BP8UogxyrKj1MBj6XScJOQgocf8JAXnqtzVTynlLWMyNBiiQI7nsVdq3HArdZ1yWh&enable-funding=venmo"></script>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("AXlAGwjHEX5EDr2js");
-        })();
-    </script>
 </head>
 <body class="is-preload">
 
@@ -26,7 +20,7 @@
             <span class="logo"><img src="images/real-logo.png" alt="CompSci" /></span>
             <h1>Computer Science <br> Tutoring & Project Assistance</h1>
             <p style="font-size: 20px; color: aliceblue; padding-top: 25px;">Welcome to my website!<br />
-                Please read the details below for pricing and tutor/project scheduling!</p>
+				Please read the details below for pricing and tutor/project scheduling!</p>
         </header>
 
         <!-- Nav -->
@@ -34,7 +28,7 @@
             <ul>
                 <li><a href="#intro" class="active">About Me</a></li>
                 <li><a href="#first">Pricing / Subjects</a></li>
-                <li><a href="#second">Tutor Request Form</a></li>
+                <li><a href="#second">Tutor Resquest Form</a></li>
                 <li><a href="#third">Payment Suite</a></li>
             </ul>
         </nav>
@@ -111,45 +105,45 @@
                     <h2>Request Tutoring</h2>
                 </header>
                 <div class="content">
-                    <form id="tutoringForm" enctype="multipart/form-data" onsubmit="sendForm(event)">
-                        <div class="row gtr-uniform">
-                            <div class="col-6 col-12-xsmall">
-                                <label for="name">Name:</label>
-                                <input type="text" id="name" name="name" required />
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" required />
-                            </div>
-                            <div class="col-12">
-                                <label for="subject">Subject:</label>
-                                <input type="text" id="subject" name="subject" required />
-                            </div>
-                            <div class="col-12">
-                                <label for="details">Details:</label>
-                                <textarea id="details" name="details" style=" padding-bottom: 20px; margin-bottom: 40px;" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <label for="file" class="custom-file-label">Choose Files</label>
-                                <input type="file" id="file" name="file" multiple />
-                                <br>
-                                <span id="file-chosen">No file chosen</span>
-                            </div>
-                            <div class="col-12">
-                                <label for="suggestedDates">Project Due Date / First Meeting Date (optional):</label>
-                                <div class="input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy" data-today-highlight="true">
-                                    <input type="text" class="form-control" id="suggestedDates" name="suggestedDates" placeholder="Select dates">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
+                    <form action="https://formspree.io/f/f/xyyrrgen" method="post" enctype="multipart/form-data">
+                    <div class="row gtr-uniform">
+                        <div class="col-6 col-12-xsmall">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required />
+                        </div>
+                        <div class="col-6 col-12-xsmall">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required />
+                        </div>
+                        <div class="col-12">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject" required />
+                        </div>
+                        <div class="col-12">
+                            <label for="details">Details:</label>
+                            <textarea id="details" name="details" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label for="file" class="custom-file-label">Choose Files</label>
+                            <input type="file" id="file" name="file" multiple />
+                            <br>
+                            <span id="file-chosen">No file chosen</span>
+                        </div>
+                        <div class="col-12">
+                            <label for="suggestedDates">Project Due Date / First Meeting Date (optional):</label>
+                            <div class="input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy" data-today-highlight="true">
+                                <input type="text" class="form-control" id="suggestedDates" name="suggestedDates" placeholder="Select dates">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <input type="submit" value="Submit Request" class="primary" />
-                            </div>
                         </div>
-                    </form>
-                    <div id="responseMessage"></div>
+                        <div class="col-12">
+                            <input type="submit" value="Submit Request" class="primary" />
+                        </div>
+                    </div>
+                </form>
+                <div id="responseMessage"></div>
                 </div>
             </section>
 
@@ -161,7 +155,7 @@
                 </header>
                 <div style="margin-left: 50px;" class="content">
                     <form id="paymentForm">
-                        <div id="paypal-button-container"></div>
+						<div id="paypal-button-container"></div>
                     </form>
                 </div>
             </section>
@@ -186,5 +180,11 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="formScript.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init("AXlAGwjHEX5EDr2js");
+    })();
+    </script>
 </body>
 </html>
